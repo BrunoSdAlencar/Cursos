@@ -35,7 +35,7 @@ type
     { Private declarations }
   public
     var sobrenome, idade : string;
-    var valor : integer;
+    var valor, cont : integer;
     { Public declarations }
   end;
 
@@ -47,12 +47,54 @@ implementation
 {$R *.dfm}
 
 procedure TTCad_Usu.btn_calcularClick(Sender: TObject);
+  var vlr1, vlr2, total, media : double;
+  var cont : integer;
 begin
-  var vlr1, vlr2, total : double;
+
   vlr1 := StrToFloat(txt_vlr1.Text);
   vlr2 := StrToFloat(txt_vlr2.Text);
+
   total := vlr1 + vlr2;
   txt_vlr3.Text := FloatToStr(total);
+
+  // Operador de condição if
+  {media:=60;
+  if (total>=media) OR (total > 50) then
+  begin
+    ShowMessage('Aprovado a média foi ' + FloatToStr(media));
+  end
+  Else
+  begin
+    ShowMessage('Reprovado a média foi ' + FloatToStr(media));
+  end; }
+
+  // Laço de repetição FOR
+  {for cont := 5 Downto 0 do
+    begin
+      ShowMessage(IntToStr(cont));
+      if (cont<= 0) then
+      begin
+       showmessage('O contador chegou a zero');
+      end;
+    end;}
+
+  // Loope de repetição WHILE
+  cont := 1;
+  while (cont<=5) do
+  begin
+    ShowMessage(IntToStr(cont));
+    cont:= cont + 1;
+    if (cont = 6) then
+      begin
+        ShowMessage('Fim');
+      end
+      else
+      begin
+        ShowMessage('continua');
+      end;
+  end;
+
+
 end;
 
 procedure TTCad_Usu.btn_deletarClick(Sender: TObject);
