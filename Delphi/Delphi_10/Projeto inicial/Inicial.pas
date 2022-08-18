@@ -25,11 +25,13 @@ type
     txt_vlr2: TEdit;
     txt_vlr3: TEdit;
     Label3: TLabel;
+    btn_tela2: TButton;
     procedure btn_salvar_vendaClick(Sender: TObject);
     procedure btn_deletarClick(Sender: TObject);
     procedure btn_editClick(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure btn_calcularClick(Sender: TObject);
+    procedure btn_tela2Click(Sender: TObject);
   private
     var nome : string;
     { Private declarations }
@@ -45,6 +47,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses tela2;
 
 procedure TTCad_Usu.btn_calcularClick(Sender: TObject);
   var vlr1, vlr2, total, media : double;
@@ -121,6 +125,12 @@ begin
   txt_nome.Text := nome;
   txt_nome2.Text := sobrenome;
   txt_nome3.Text := idade;
+end;
+
+procedure TTCad_Usu.btn_tela2Click(Sender: TObject);
+begin
+  frm_tela2 := Tfrm_tela2.Create(self);
+  frm_tela2.ShowModal;
 end;
 
 procedure TTCad_Usu.SpeedButton1Click(Sender: TObject);

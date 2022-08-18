@@ -157,4 +157,15 @@
 16. Convertendo inteiro para string
 17. Convertendo string para inteiro
 18. Trabalhando com calculos
+19. Operadores e Comparadores
+20. Condicionais if e else
+21. Concatenando texto com variável
+22. Condições AND e OR
+23. Laço de repetição FOR
+24. Laço de repetição WHILE
+25. Incrimentação de laços de repetição
+26. Criando uma nova tela
+27. Chamando outras telas
+28. Janelas Modal
+29. Criando um projeto multiplataforma
 

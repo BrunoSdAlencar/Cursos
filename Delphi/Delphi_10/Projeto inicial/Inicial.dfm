@@ -296,7 +296,7 @@ object TCad_Usu: TTCad_Usu
   object btn_calcular: TButton
     Left = 312
     Top = 288
-    Width = 75
+    Width = 121
     Height = 25
     Caption = 'calcular'
     TabOrder = 6
@@ -322,5 +322,14 @@ object TCad_Usu: TTCad_Usu
     Width = 121
     Height = 21
     TabOrder = 9
+  end
+  object btn_tela2: TButton
+    Left = 456
+    Top = 288
+    Width = 121
+    Height = 25
+    Caption = 'Tela 2'
+    TabOrder = 10
+    OnClick = btn_tela2Click
   end
 end
