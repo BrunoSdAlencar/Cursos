@@ -168,4 +168,21 @@
 27. Chamando outras telas
 28. Janelas Modal
 29. Criando um projeto multiplataforma
-
+30. Criando uma calculadora
+31. Trabalhando com layouts
+32. Cabeçalho da calculadora
+33. Programando operações
+34. Habilitando e desabilitando botões
+35. Condições para as operações
+36. Programando as operações
+37. Trabalhando com case e switch
+38. Switch com strings
+39. Cálculos com switch e case
+40. Inserindo valores após clickar
+41. Limpando valores na calculadora
+42. Apagando valores na calculadora
+43. virgulas e casas decimais
+44. Limpando os dados
+45. Finalizando a calculadora
+46. Trocando o icone da aplicação
+47. Criando o execultável
