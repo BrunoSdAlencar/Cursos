@@ -70,12 +70,20 @@ inherited frmCadProduto: TfrmCadProduto
         Height = 13
         Caption = 'Quantidade'
       end
+      object lbl1: TLabel
+        Left = 584
+        Top = 64
+        Width = 47
+        Height = 13
+        Caption = 'Categoria'
+      end
       object edtProdutoId: TEdit
         Tag = 1
         Left = 16
         Top = 37
         Width = 121
         Height = 21
+        Enabled = False
         TabOrder = 0
       end
       object edtNome: TEdit

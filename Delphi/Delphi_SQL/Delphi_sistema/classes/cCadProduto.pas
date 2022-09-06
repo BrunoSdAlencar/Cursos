@@ -110,8 +110,11 @@ begin
     Qry.ParamByName('categoriaId').AsInteger     :=Self.F_categoriaId;
 
     Try
+      ConexaoDB.StartTransaction;
       Qry.ExecSQL;
+      ConexaoDB.Commit;
     Except
+      ConexaoDB.Rollback;
       Result:=false;
     End;
 

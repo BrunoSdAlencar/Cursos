@@ -7,7 +7,8 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.ComCtrls, Data.DB,
   Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask,
-  ZAbstractRODataset, ZAbstractDataset, ZDataset, uDTMConexao, uEnum;
+  ZAbstractRODataset, ZAbstractDataset, ZDataset, uDTMConexao, uEnum, RxCurrEdit,
+  RxToolEdit;
 
 type
   TfrmTelaHeranca = class(TForm)
@@ -172,7 +173,23 @@ begin
     if (Components[i] is TLabeledEdit) then
       TLabeledEdit(Components[i]).Text := EmptyStr
     else if (Components[i] is TEdit) then
-      TEdit(Components[i]).Text := '';
+      TEdit(Components[i]).Text := ''
+
+    else if (Components[i] is TMaskEdit) then
+      TMaskEdit(Components[i]).Text := ''
+
+    else if (Components[i] is TMemo) then
+      TMemo(Components[i]).Text := ''
+
+    else if (Components[i] is TDBLookupComboBox) then
+      TDBLookupComboBox(Components[i]).KeyValue:=null
+
+    else if (Components[i] is TCurrencyEdit) then
+      TCurrencyEdit(Components[i]).value:=0
+
+    else if (Components[i] is TDateEdit) then
+      TDateEdit(Components[i]).Date:=0;
+
   end;
 end;
 

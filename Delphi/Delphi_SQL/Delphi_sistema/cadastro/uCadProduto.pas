@@ -33,9 +33,15 @@ type
     QryCategoriacategoriaId: TIntegerField;
     QryCategoriadescricao: TWideStringField;
     lkpCategoria: TDBLookupComboBox;
+    lbl1: TLabel;
+    procedure btnAlterarClick(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
-    oCliente:TCliente;
+    oProduto:TProduto;
     function Apagar:Boolean; override;
     function Gravar(EstadoDoCadastro:TEstadoDoCadastro):Boolean; override;
   public
@@ -48,15 +54,17 @@ var
 implementation
 
 
-
 {$R *.dfm}
 
+{$REGION  'Override'}
 function TfrmCadProduto.Apagar: Boolean;
 begin
   if oProduto.Selecionar(QryListagem.FieldByName('produtoId').AsInteger) then begin
      Result:=oProduto.Apagar;
   end;
 end;
+
+
 
 function TfrmCadProduto.Gravar(EstadoDoCadastro: TEstadoDoCadastro): Boolean;
 begin
@@ -76,4 +84,52 @@ begin
   else if (EstadoDoCadastro=ecAlterar) then
      Result:=oProduto.Atualizar;
 end;
+
+{$endregion}
+
+procedure TfrmCadProduto.btnAlterarClick(Sender: TObject);
+begin
+  if oProduto.Selecionar(QryListagem.FieldByName('produtoId').AsInteger) then begin
+     edtProdutoId.Text     :=IntToStr(oProduto.codigo);
+     edtNome.Text          :=oProduto.nome;
+     edtDescricao.Text     :=oProduto.descricao;
+     lkpCategoria.KeyValue :=oProduto.categoriaId;
+     edtValor.value        :=oProduto.valor;
+     edtQuantidade.value   :=oProduto.quantidade;
+  end
+  else begin
+    btnCancelar.Click;
+    Abort;
+  end;
+
+  inherited;
+
+end;
+procedure TfrmCadProduto.btnNovoClick(Sender: TObject);
+begin
+  inherited;
+  edtNome.SetFocus;
+end;
+
+procedure TfrmCadProduto.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  QryCategoria.Close;
+  if Assigned(oProduto) then
+    FreeAndNil(oProduto);
+end;
+
+procedure TfrmCadProduto.FormCreate(Sender: TObject);
+begin
+  inherited;
+  oProduto:=Tproduto.Create(dtmPrincipal.ConexaoDB);
+  IndiceAtual:='nome';
+end;
+
+procedure TfrmCadProduto.FormShow(Sender: TObject);
+begin
+  inherited;
+  QryCategoria.Open;
+end;
+
 end.
