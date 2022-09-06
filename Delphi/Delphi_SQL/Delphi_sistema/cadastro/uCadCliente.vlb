@@ -59,12 +59,9 @@ Coordinates=360,10,59,58
 Coordinates=10,10,53,58
 
 []
-Coordinates=10,78,87,58
+Coordinates=73,10,90,58
 Visible=True
 
 [edtclienteId]
 Coordinates=107,78,99,58
-
-[edtNome]
-Coordinates=73,10,90,58
 

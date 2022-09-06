@@ -21,7 +21,6 @@ type
     QryListagememail: TWideStringField;
     QryListagemdatanascimento: TDateTimeField;
     edtClienteId: TLabeledEdit;
-    edtNome: TLabeledEdit;
     edtEndereco: TEdit;
     edtCidade: TEdit;
     edtBairro: TEdit;
@@ -30,6 +29,8 @@ type
     Label1: TLabel;
     edtTelefone: TMaskEdit;
     edtDataNascimento: TDateEdit;
+    edtNome: TEdit;
+    lbl1: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnNovoClick(Sender: TObject);

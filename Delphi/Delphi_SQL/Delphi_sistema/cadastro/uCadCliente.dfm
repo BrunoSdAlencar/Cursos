@@ -79,6 +79,13 @@ inherited frmCadCliente: TfrmCadCliente
         Height = 13
         Caption = 'Data Nascimento'
       end
+      object lbl1: TLabel
+        Left = 16
+        Top = 75
+        Width = 27
+        Height = 13
+        Caption = 'Nome'
+      end
       object edtclienteId: TLabeledEdit
         Tag = 1
         Left = 16
@@ -92,18 +99,6 @@ inherited frmCadCliente: TfrmCadCliente
         NumbersOnly = True
         TabOrder = 0
       end
-      object edtNome: TLabeledEdit
-        Tag = 2
-        Left = 16
-        Top = 96
-        Width = 497
-        Height = 21
-        EditLabel.Width = 46
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Descri'#231#227'o'
-        MaxLength = 30
-        TabOrder = 1
-      end
       object edtCEP: TMaskEdit
         Left = 552
         Top = 96
@@ -111,7 +106,7 @@ inherited frmCadCliente: TfrmCadCliente
         Height = 21
         EditMask = '99.999-999;1;_'
         MaxLength = 10
-        TabOrder = 2
+        TabOrder = 1
         Text = '  .   -   '
       end
       object edtEndereco: TEdit
@@ -120,7 +115,7 @@ inherited frmCadCliente: TfrmCadCliente
         Width = 497
         Height = 21
         MaxLength = 60
-        TabOrder = 3
+        TabOrder = 2
       end
       object edtBairro: TEdit
         Left = 552
@@ -128,7 +123,7 @@ inherited frmCadCliente: TfrmCadCliente
         Width = 281
         Height = 21
         MaxLength = 40
-        TabOrder = 4
+        TabOrder = 3
       end
       object edtCidade: TEdit
         Left = 16
@@ -136,7 +131,7 @@ inherited frmCadCliente: TfrmCadCliente
         Width = 497
         Height = 21
         MaxLength = 50
-        TabOrder = 5
+        TabOrder = 4
       end
       object edtTelefone: TMaskEdit
         Left = 552
@@ -145,7 +140,7 @@ inherited frmCadCliente: TfrmCadCliente
         Height = 21
         EditMask = '(99)99999-9999;1;_'
         MaxLength = 14
-        TabOrder = 6
+        TabOrder = 5
         Text = '(  )     -    '
       end
       object edtEmail: TEdit
@@ -154,7 +149,7 @@ inherited frmCadCliente: TfrmCadCliente
         Width = 497
         Height = 21
         MaxLength = 100
-        TabOrder = 7
+        TabOrder = 6
       end
       object edtdataNascimento: TDateEdit
         Left = 16
@@ -164,6 +159,14 @@ inherited frmCadCliente: TfrmCadCliente
         ClickKey = 114
         DialogTitle = 'Selecione a data'
         NumGlyphs = 2
+        TabOrder = 7
+      end
+      object edtNome: TEdit
+        Tag = 2
+        Left = 16
+        Top = 94
+        Width = 497
+        Height = 21
         TabOrder = 8
       end
     end
