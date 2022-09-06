@@ -9,13 +9,15 @@ object dtmPrincipal: TdtmPrincipal
     Properties.Strings = (
       'controls_cp=CP_UTF16'
       'AutoEncodeStrings=True')
+    Connected = True
     SQLHourGlass = True
-    HostName = ''
+    HostName = '.\SERVERCURSO'
     Port = 0
-    Database = ''
-    User = ''
-    Password = ''
-    Protocol = ''
+    Database = 'vendas'
+    User = 'sa'
+    Password = 'rt6666'
+    Protocol = 'mssql'
+    LibraryLocation = 'D:\Cursos\Delphi\Delphi_sistema\ntwdblib.dll'
     Left = 32
     Top = 48
   end

@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao, Enter;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao, Enter,
+  Vcl.StdCtrls, Vcl.ExtCtrls;
 
 type
   TfrmPrincipal = class(TForm)
@@ -28,12 +29,14 @@ type
     procedure FormCreate(Sender: TObject);
     procedure CATEGORIA1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure CLIENTE1Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter: TMREnter;
   public
     { Public declarations }
   end;
+
 
 var
   frmPrincipal: TfrmPrincipal;
@@ -42,13 +45,20 @@ implementation
 
 {$R *.dfm}
 
-uses uCadCategoria;
+uses uCadCategoria, uCadCliente;
 
 procedure TfrmPrincipal.CATEGORIA1Click(Sender: TObject);
 begin
   frmCadCategoria:=TfrmCadCategoria.Create(Self);
   frmCadCategoria.ShowModal;
   frmCadCategoria.Release;
+end;
+
+procedure TfrmPrincipal.CLIENTE1Click(Sender: TObject);
+begin
+  frmCadCliente:=TfrmCadCliente.Create(Self);
+  frmCadCliente.ShowModal;
+  frmCadCliente.Release;
 end;
 
 procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -75,7 +85,7 @@ begin
   dtmPrincipal := TdtmPrincipal.Create(Self);
   with dtmPrincipal.ConexaoDB do
   begin
-    SQLHourGlass:=True;
+    SQLHourGlass:=False;
     Protocol := 'mssql';
     LibraryLocation:='D:\Cursos\Delphi\Delphi_sistema\ntwdblib.dll';
     HostName:='.\SERVERCURSO';
