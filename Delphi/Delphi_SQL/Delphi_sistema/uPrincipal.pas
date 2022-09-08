@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao, Enter,
-  Vcl.StdCtrls, Vcl.ExtCtrls;
+  Vcl.StdCtrls, Vcl.ExtCtrls, uFrmAtualizaDB;
 
 type
   TfrmPrincipal = class(TForm)
@@ -31,9 +31,11 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure CLIENTE1Click(Sender: TObject);
     procedure CATEGORIA2Click(Sender: TObject);
+    procedure VENDAS1Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter: TMREnter;
+    procedure AtualizacaoBancoDados(aForm: TfrmAtualizaDB);
   public
     { Public declarations }
   end;
@@ -46,7 +48,7 @@ implementation
 
 {$R *.dfm}
 
-uses uCadCategoria, uCadCliente, uCadProduto;
+uses uCadCategoria, uCadCliente, uCadProduto, uProVenda;
 
 procedure TfrmPrincipal.CATEGORIA1Click(Sender: TObject);
 begin
@@ -89,6 +91,9 @@ begin
   dtmPrincipal.ConexaoDB.Connected:=True;}
 
  // conexao com DB
+  frmAtualizaDB:=TfrmAtualizaDB.Create(Self);
+  frmAtualizaDB.Show;
+  frmAtualizaDB.Refresh;
 
   dtmPrincipal := TdtmPrincipal.Create(Self);
   with dtmPrincipal.ConexaoDB do
@@ -104,9 +109,42 @@ begin
     Connected:=True;
   end;
 
+  AtualizacaoBancoDados(frmAtualizaDB);
+  frmAtualizaDB.Free;
+
   TeclaEnter:=TMREnter.Create(self);
   TeclaEnter.FocusEnabled:=true;
   TeclaEnter.FocusColor:=clInfoBk;
+
+
+end;
+
+
+procedure TfrmPrincipal.AtualizacaoBancoDados(aForm:TfrmAtualizaDB);
+begin
+  aForm.chkConexao.Checked:=true;
+  aForm.Refresh;
+  Sleep(100);
+  DtmPrincipal.QryScriptCategorias.ExecSQL;
+  aForm.chkCategoria.Checked:=true;
+  aForm.Refresh;
+  Sleep(100);
+  DtmPrincipal.QryScriptClientes.ExecSQL;
+  aForm.chkCliente.Checked:=true;
+  aForm.Refresh;
+  Sleep(100);
+  DtmPrincipal.QryScriptProdutos.ExecSQL;
+  aForm.chkProduto.Checked:=true;
+  aForm.Refresh;
+  Sleep(100);
+  DtmPrincipal.QryScriptVendas.ExecSQL;
+  aForm.chkVendas.Checked:=true;
+  aForm.Refresh;
+  Sleep(100);
+  DtmPrincipal.QryScriptItensVenda.ExecSQL;
+  aForm.chkItensVenda.Checked:=true;
+  aForm.Refresh;
+  Sleep(100);
 
 
 end;
@@ -115,6 +153,13 @@ procedure TfrmPrincipal.mnuFecharClick(Sender: TObject);
 begin
   // Close;
   Application.Terminate;
+end;
+
+procedure TfrmPrincipal.VENDAS1Click(Sender: TObject);
+begin
+  frmProVenda:=TfrmProVenda.Create(self);
+  frmProVenda.ShowModal;
+  frmProVenda.Release;
 end;
 
 end.
