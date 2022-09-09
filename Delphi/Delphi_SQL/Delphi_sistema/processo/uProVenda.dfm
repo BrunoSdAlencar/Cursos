@@ -85,7 +85,7 @@ inherited frmProVenda: TfrmProVenda
         Height = 21
         KeyField = 'clienteId'
         ListField = 'nome'
-        ListSource = dtmVenda.dtsCliente
+        ListSource = dtmVendas.dtsCliente
         TabOrder = 1
       end
       object edtDataVenda: TDateEdit
@@ -140,7 +140,7 @@ inherited frmProVenda: TfrmProVenda
           Height = 21
           KeyField = 'produtoId'
           ListField = 'nome'
-          ListSource = dtmVenda.dtsProdutos
+          ListSource = dtmVendas.dtsProdutos
           TabOrder = 0
           OnExit = lkpProdutoExit
         end
@@ -204,7 +204,7 @@ inherited frmProVenda: TfrmProVenda
           Width = 768
           Height = 295
           Align = alClient
-          DataSource = dtmVenda.dtsItensVenda
+          DataSource = dtmVendas.dtsItensVenda
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgCancelOnExit]
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
