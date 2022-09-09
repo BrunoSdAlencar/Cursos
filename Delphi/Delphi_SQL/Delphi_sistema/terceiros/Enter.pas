@@ -164,6 +164,7 @@ begin
     Add('TJvDirectoryEdit');
     Add('TJvFilenameEdit');
     Add('TDBLookupComboBox');
+    Add('TLabeledEdit');
   end;
 
   if not( csDesigning in ComponentState ) then

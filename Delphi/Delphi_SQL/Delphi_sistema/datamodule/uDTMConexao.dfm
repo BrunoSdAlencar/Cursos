@@ -120,4 +120,21 @@ object dtmPrincipal: TdtmPrincipal
     Left = 224
     Top = 96
   end
+  object QryScriptUsuarios: TZQuery
+    Connection = ConexaoDB
+    SQL.Strings = (
+      'IF OBJECT_ID ('#39'usuarios'#39') IS NULL'
+      'BEGIN'
+      #9'Create table usuarios ('
+      #9#9'usuarioId int Identity(1,1) not null,'
+      #9#9'nome varchar (50) not null,'
+      #9#9'senha varchar(40) not null,'
+      ''
+      #9#9'Primary Key (usuarioId),'
+      ')'
+      'END')
+    Params = <>
+    Left = 352
+    Top = 112
+  end
 end

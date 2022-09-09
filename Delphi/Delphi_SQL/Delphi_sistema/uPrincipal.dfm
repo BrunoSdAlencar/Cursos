@@ -15,8 +15,22 @@ object frmPrincipal: TfrmPrincipal
   WindowState = wsMaximized
   OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
+  object stpPrincipal: TStatusBar
+    Left = 0
+    Top = 280
+    Width = 635
+    Height = 19
+    Panels = <
+      item
+        Width = 150
+      end>
+    ExplicitLeft = 360
+    ExplicitTop = 144
+    ExplicitWidth = 0
+  end
   object mainPrincipal: TMainMenu
     Left = 592
     Top = 16
@@ -40,6 +54,17 @@ object frmPrincipal: TfrmPrincipal
       object N1: TMenuItem
         Caption = '-'
       end
+      object USURIO1: TMenuItem
+        Caption = 'USU'#193'RIO'
+        OnClick = USURIO1Click
+      end
+      object ALTERARSENHA1: TMenuItem
+        Caption = 'ALTERAR SENHA'
+        OnClick = ALTERARSENHA1Click
+      end
+      object N2: TMenuItem
+        Caption = '-'
+      end
       object mnuFechar: TMenuItem
         Caption = 'FECHAR'
         OnClick = mnuFecharClick
@@ -54,8 +79,17 @@ object frmPrincipal: TfrmPrincipal
     end
     object RELATRIO1: TMenuItem
       Caption = 'RELAT'#211'RIO'
+      object CATEGORIA3: TMenuItem
+        Caption = 'CATEGORIA'
+        OnClick = CATEGORIA3Click
+      end
       object CLIENTE3: TMenuItem
         Caption = 'CLIENTE'
+        OnClick = CLIENTE3Click
+      end
+      object FICHADECLIENTE1: TMenuItem
+        Caption = 'FICHA DE CLIENTE'
+        OnClick = FICHADECLIENTE1Click
       end
       object CLIENTE4: TMenuItem
         Caption = '-'

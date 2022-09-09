@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao, Enter,
-  Vcl.StdCtrls, Vcl.ExtCtrls, uFrmAtualizaDB;
+  Vcl.StdCtrls, Vcl.ExtCtrls, uFrmAtualizaDB, uAlterarSenha, cUsuarioLogado,
+  Vcl.ComCtrls;
 
 type
   TfrmPrincipal = class(TForm)
@@ -25,6 +26,12 @@ type
     PRODUTO1: TMenuItem;
     PRODUTO2: TMenuItem;
     VENDA1: TMenuItem;
+    CATEGORIA3: TMenuItem;
+    FICHADECLIENTE1: TMenuItem;
+    USURIO1: TMenuItem;
+    N2: TMenuItem;
+    ALTERARSENHA1: TMenuItem;
+    stpPrincipal: TStatusBar;
     procedure mnuFecharClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure CATEGORIA1Click(Sender: TObject);
@@ -32,6 +39,12 @@ type
     procedure CLIENTE1Click(Sender: TObject);
     procedure CATEGORIA2Click(Sender: TObject);
     procedure VENDAS1Click(Sender: TObject);
+    procedure CATEGORIA3Click(Sender: TObject);
+    procedure CLIENTE3Click(Sender: TObject);
+    procedure FICHADECLIENTE1Click(Sender: TObject);
+    procedure USURIO1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure ALTERARSENHA1Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter: TMREnter;
@@ -43,12 +56,14 @@ type
 
 var
   frmPrincipal: TfrmPrincipal;
+  oUsuarioLogado: TUsuarioLogado;
 
 implementation
 
 {$R *.dfm}
 
-uses uCadCategoria, uCadCliente, uCadProduto, uProVenda;
+uses uCadCategoria, uCadCliente, uCadProduto, uProVenda, uRelCategoria, uRelCadCliente, uRelCadClienteFicha,
+  uCadUsuario, uLogin;
 
 procedure TfrmPrincipal.CATEGORIA1Click(Sender: TObject);
 begin
@@ -64,6 +79,13 @@ begin
    frmCadProduto.Release;
 end;
 
+procedure TfrmPrincipal.CATEGORIA3Click(Sender: TObject);
+begin
+  frmRelCategoria:=TfrmRelCategoria.Create(Self);
+  frmRelCategoria.Relatorio.PreviewModal;
+  frmRelCategoria.Release;
+end;
+
 procedure TfrmPrincipal.CLIENTE1Click(Sender: TObject);
 begin
   frmCadCliente:=TfrmCadCliente.Create(Self);
@@ -71,11 +93,32 @@ begin
   frmCadCliente.Release;
 end;
 
+procedure TfrmPrincipal.CLIENTE3Click(Sender: TObject);
+begin
+  frmRelCadCliente:=TfrmRelCadCliente.Create(Self);
+  frmRelCadCliente.Relatorio.PreviewModal;
+  frmRelCadCliente.Release;
+
+end;
+
+procedure TfrmPrincipal.FICHADECLIENTE1Click(Sender: TObject);
+begin
+
+  frmRelCadClienteFicha:=TfrmRelCadClienteFicha.Create(Self);
+  frmRelCadClienteFicha.Relatorio.PreviewModal;
+  frmRelCadClienteFicha.Release;
+end;
+
 procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   FreeAndNil(TeclaEnter);
   FreeAndNil(dtmPrincipal);
+
+  if Assigned(oUsuarioLogado) then
+    FreeAndNil(oUsuarioLogado);
 end;
+
+
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
@@ -120,29 +163,61 @@ begin
 end;
 
 
+procedure TfrmPrincipal.FormShow(Sender: TObject);
+begin
+  try
+    oUsuarioLogado:=TUsuarioLogado.Create;
+    frmLogin:=TfrmLogin.Create(Self);
+    frmLogin.ShowModal;
+  finally
+    frmLogin.Release;
+    stpPrincipal.Panels[0].Text:='USUÁRIO: '+oUsuarioLogado.nome;
+  end;
+
+
+end;
+
+procedure TfrmPrincipal.ALTERARSENHA1Click(Sender: TObject);
+begin
+  frmAlterarSenha:=TfrmAlterarSenha.Create(self);
+  frmAlterarSenha.ShowModal;
+  frmAlterarSenha.Release;
+
+end;
+
 procedure TfrmPrincipal.AtualizacaoBancoDados(aForm:TfrmAtualizaDB);
 begin
   aForm.chkConexao.Checked:=true;
   aForm.Refresh;
   Sleep(100);
+
   DtmPrincipal.QryScriptCategorias.ExecSQL;
   aForm.chkCategoria.Checked:=true;
   aForm.Refresh;
   Sleep(100);
+
   DtmPrincipal.QryScriptClientes.ExecSQL;
   aForm.chkCliente.Checked:=true;
   aForm.Refresh;
   Sleep(100);
+
   DtmPrincipal.QryScriptProdutos.ExecSQL;
   aForm.chkProduto.Checked:=true;
   aForm.Refresh;
   Sleep(100);
+
   DtmPrincipal.QryScriptVendas.ExecSQL;
   aForm.chkVendas.Checked:=true;
   aForm.Refresh;
   Sleep(100);
+
   DtmPrincipal.QryScriptItensVenda.ExecSQL;
   aForm.chkItensVenda.Checked:=true;
+  aForm.Refresh;
+  Sleep(100);
+
+  DtmPrincipal.QryScriptUsuarios.ExecSQL;
+  aForm.chkUsuarios.Checked:=true;
   aForm.Refresh;
   Sleep(100);
 
@@ -153,6 +228,13 @@ procedure TfrmPrincipal.mnuFecharClick(Sender: TObject);
 begin
   // Close;
   Application.Terminate;
+end;
+
+procedure TfrmPrincipal.USURIO1Click(Sender: TObject);
+begin
+  frmCadUsuario:=TfrmCadUsuario.Create(self);
+  frmCadUsuario.ShowModal;
+  frmCadUsuario.Release;
 end;
 
 procedure TfrmPrincipal.VENDAS1Click(Sender: TObject);

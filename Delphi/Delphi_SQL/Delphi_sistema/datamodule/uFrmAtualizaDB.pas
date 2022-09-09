@@ -19,6 +19,7 @@ type
     chkVendas: TCheckBox;
     chkItensVenda: TCheckBox;
     img1: TImage;
+    chkUsuarios: TCheckBox;
   private
     { Private declarations }
   public
