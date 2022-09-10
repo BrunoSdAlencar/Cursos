@@ -129,7 +129,6 @@ object frmLogin: TfrmLogin
     Font.Style = []
     ParentFont = False
     TabOrder = 2
-    Text = 'ADMIN'
   end
   object edtSenha: TEdit
     Left = 144
@@ -144,6 +143,5 @@ object frmLogin: TfrmLogin
     ParentFont = False
     PasswordChar = '#'
     TabOrder = 3
-    Text = 'mudar@123'
   end
 end
