@@ -139,13 +139,12 @@ begin
         end;
         cds.Next;
       end;
-
+    ConexaoDB.Commit;
     Except
       Result:=false;
       ConexaoDB.Rollback;
     End;
 
-    ConexaoDB.Commit;
 
   finally
     if Assigned(Qry) then
@@ -174,9 +173,13 @@ begin
     Qry.ParamByName('TotalProduto').AsFloat :=cds.FieldByName('valorTotalProduto').AsFloat;
 
     Try
+      ConexaoDB.StartTransaction;
       Qry.ExecSQL;
+      ConexaoDB.Commit;
+
       BaixarEstoque(cds.FieldByName('produtoId').AsInteger, cds.FieldByName('quantidade').AsFloat);
     Except
+      ConexaoDB.Rollback;
       Result:=false;
     End;
 
@@ -237,11 +240,11 @@ begin
     Qry.ParamByName('vendaId').AsInteger    :=Self.F_vendaId;
 
     Try
-
+      ConexaoDB.StartTransaction;
       Qry.ExecSQL;
-
+      ConexaoDB.Commit;
     Except
-
+      ConexaoDB.Rollback;
       Result:=false;
     End;
 
@@ -332,10 +335,15 @@ begin
     Qry.ParamByName('Quantidade').AsFloat   := cds.FieldByName('quantidade').AsFloat;
     Qry.ParamByName('TotalProduto').AsFloat := cds.FieldByName('valorTotalProduto').AsFloat;
     try
+      ConexaoDB.StartTransaction;
       Qry.ExecSQL;
+      ConexaoDB.Commit;
+
       BaixarEstoque(cds.FieldByName('produtoId').AsInteger, cds.FieldByName('quantidade').AsFloat);
     Except
+      ConexaoDB.Rollback;
       Result:=false;
+
     End;
 
   finally

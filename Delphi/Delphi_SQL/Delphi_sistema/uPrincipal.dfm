@@ -27,9 +27,6 @@ object frmPrincipal: TfrmPrincipal
       item
         Width = 150
       end>
-    ExplicitLeft = 360
-    ExplicitTop = 144
-    ExplicitWidth = 0
   end
   object mainPrincipal: TMainMenu
     Left = 592
@@ -96,12 +93,14 @@ object frmPrincipal: TfrmPrincipal
       end
       object PRODUTO1: TMenuItem
         Caption = 'PRODUTO'
+        OnClick = PRODUTO1Click
       end
       object PRODUTO2: TMenuItem
         Caption = '-'
       end
       object VENDA1: TMenuItem
         Caption = 'VENDA POR DATA'
+        OnClick = VENDA1Click
       end
     end
   end

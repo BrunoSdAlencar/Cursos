@@ -149,10 +149,6 @@
             <Form>frmRelCadClienteFicha</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="relatorio\uRelCategoria.pas">
-            <Form>frmRelCategoria</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="relatorio\uRelCadCliente.pas">
             <Form>frmRelCadCliente</Form>
             <FormType>dfm</FormType>
@@ -172,6 +168,22 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="classes\cUsuarioLogado.pas"/>
+        <DCCReference Include="relatorio\uRelCadProdutoComGrupoCategoria.pas">
+            <Form>frmRelCadProdutoComGrupoCategoria</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="relatorio\uRelCategoria.pas">
+            <Form>frmRelCategoria</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="relatorio\uSelecionarData.pas">
+            <Form>frmSelecionarData</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="relatorio\uRelCadProduto.pas">
+            <Form>frmRelCadProduto</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao, Enter,
-  Vcl.StdCtrls, Vcl.ExtCtrls, uFrmAtualizaDB, uAlterarSenha, cUsuarioLogado,
+  Vcl.StdCtrls, Vcl.ExtCtrls, uFrmAtualizaDB, uAlterarSenha, cUsuarioLogado, ZDbcIntfs,
   Vcl.ComCtrls;
 
 type
@@ -45,6 +45,8 @@ type
     procedure USURIO1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ALTERARSENHA1Click(Sender: TObject);
+    procedure PRODUTO1Click(Sender: TObject);
+    procedure VENDA1Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter: TMREnter;
@@ -63,7 +65,7 @@ implementation
 {$R *.dfm}
 
 uses uCadCategoria, uCadCliente, uCadProduto, uProVenda, uRelCategoria, uRelCadCliente, uRelCadClienteFicha,
-  uCadUsuario, uLogin;
+  uCadUsuario, uLogin, uRelCadProduto, uSelecionarData;
 
 procedure TfrmPrincipal.CATEGORIA1Click(Sender: TObject);
 begin
@@ -149,6 +151,8 @@ begin
     user:='sa';
     Password:='rt6666';
     Database:='vendas';
+    AutoCommit:=True;
+    TransactIsolationLevel:=tiReadCommitted;
     Connected:=True;
   end;
 
@@ -230,11 +234,28 @@ begin
   Application.Terminate;
 end;
 
+procedure TfrmPrincipal.PRODUTO1Click(Sender: TObject);
+begin
+  frmRelCadProduto:=TfrmRelCadProduto.Create(Self);
+  frmRelCadProduto.Relatorio.PreviewModal;
+  frmRelCadProduto.Release;
+end;
+
 procedure TfrmPrincipal.USURIO1Click(Sender: TObject);
 begin
   frmCadUsuario:=TfrmCadUsuario.Create(self);
   frmCadUsuario.ShowModal;
   frmCadUsuario.Release;
+end;
+
+procedure TfrmPrincipal.VENDA1Click(Sender: TObject);
+begin
+  try
+    frmSelecionarData:=TfrmSelecionarData.Create(Self);
+    frmSelecionarData.ShowModal;
+  finally
+    frmSelecionarData.Release;
+  end;
 end;
 
 procedure TfrmPrincipal.VENDAS1Click(Sender: TObject);

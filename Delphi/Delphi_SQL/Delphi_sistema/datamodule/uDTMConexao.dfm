@@ -9,6 +9,7 @@ object dtmPrincipal: TdtmPrincipal
     Properties.Strings = (
       'controls_cp=CP_UTF16'
       'AutoEncodeStrings=True')
+    TransactIsolationLevel = tiReadCommitted
     Connected = True
     SQLHourGlass = True
     HostName = '.\SERVERCURSO'
@@ -33,8 +34,8 @@ object dtmPrincipal: TdtmPrincipal
       ')'
       'END')
     Params = <>
-    Left = 120
-    Top = 48
+    Left = 168
+    Top = 56
   end
   object QryScriptClientes: TZQuery
     Connection = ConexaoDB
@@ -56,7 +57,7 @@ object dtmPrincipal: TdtmPrincipal
       #9')'
       'END')
     Params = <>
-    Left = 224
+    Left = 288
     Top = 48
   end
   object QryScriptProdutos: TZQuery
@@ -77,7 +78,7 @@ object dtmPrincipal: TdtmPrincipal
       #9')'
       'END')
     Params = <>
-    Left = 360
+    Left = 400
     Top = 48
   end
   object QryScriptVendas: TZQuery
@@ -97,8 +98,8 @@ object dtmPrincipal: TdtmPrincipal
       ')'
       'END')
     Params = <>
-    Left = 120
-    Top = 96
+    Left = 176
+    Top = 128
   end
   object QryScriptItensVenda: TZQuery
     Connection = ConexaoDB
@@ -117,8 +118,8 @@ object dtmPrincipal: TdtmPrincipal
       ')'
       'END')
     Params = <>
-    Left = 224
-    Top = 96
+    Left = 288
+    Top = 120
   end
   object QryScriptUsuarios: TZQuery
     Connection = ConexaoDB
@@ -134,7 +135,7 @@ object dtmPrincipal: TdtmPrincipal
       ')'
       'END')
     Params = <>
-    Left = 352
+    Left = 400
     Top = 112
   end
 end

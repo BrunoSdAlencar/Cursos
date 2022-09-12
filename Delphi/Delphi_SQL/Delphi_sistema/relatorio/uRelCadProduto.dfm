@@ -1,7 +1,7 @@
-object frmRelCategoria: TfrmRelCategoria
+object frmRelCadProduto: TfrmRelCadProduto
   Left = 0
   Top = 0
-  Caption = 'frmRelCategoria'
+  Caption = 'Relat'#243'rio de Produtos'
   ClientHeight = 530
   ClientWidth = 869
   Color = clBtnFace
@@ -20,7 +20,7 @@ object frmRelCategoria: TfrmRelCategoria
     Top = 0
     Width = 794
     Height = 1123
-    DataSource = dtsCategorias
+    DataSource = dtsProdutos
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -13
@@ -35,9 +35,9 @@ object frmRelCategoria: TfrmRelCategoria
       object rlbl1: TRLLabel
         Left = 0
         Top = 13
-        Width = 245
+        Width = 229
         Height = 24
-        Caption = 'Listagem de Categorias'
+        Caption = 'Listagem de Produtos'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -21
@@ -125,19 +125,37 @@ object frmRelCategoria: TfrmRelCategoria
       object rldbtxtcategoriaId: TRLDBText
         Left = 3
         Top = 16
-        Width = 67
+        Width = 57
         Height = 16
-        DataField = 'categoriaId'
-        DataSource = dtsCategorias
+        DataField = 'produtoId'
+        DataSource = dtsProdutos
         Text = ''
       end
       object rldbtxtcategoriaId1: TRLDBText
         Left = 76
         Top = 16
-        Width = 60
+        Width = 36
         Height = 16
-        DataField = 'descricao'
-        DataSource = dtsCategorias
+        DataField = 'nome'
+        DataSource = dtsProdutos
+        Text = ''
+      end
+      object rldbtxtnome: TRLDBText
+        Left = 292
+        Top = 18
+        Width = 67
+        Height = 16
+        DataField = 'quantidade'
+        DataSource = dtsProdutos
+        Text = ''
+      end
+      object rldbtxtnome1: TRLDBText
+        Left = 508
+        Top = 16
+        Width = 30
+        Height = 16
+        DataField = 'valor'
+        DataSource = dtsProdutos
         Text = ''
       end
     end
@@ -159,9 +177,9 @@ object frmRelCategoria: TfrmRelCategoria
         object rlbl411: TRLLabel
           Left = 76
           Top = 6
-          Width = 49
+          Width = 105
           Height = 16
-          Caption = 'Produto'
+          Caption = 'Nome do Produto'
         end
         object rlbl41: TRLLabel
           Left = 3
@@ -173,30 +191,49 @@ object frmRelCategoria: TfrmRelCategoria
           ParentColor = False
           Transparent = False
         end
+        object rlbl4111: TRLLabel
+          Left = 292
+          Top = 6
+          Width = 144
+          Height = 16
+          Caption = 'Quantidade em Estoque'
+        end
+        object rlbl4112: TRLLabel
+          Left = 508
+          Top = 6
+          Width = 38
+          Height = 16
+          Caption = 'Pre'#231'o'
+        end
       end
     end
   end
-  object QryCategorias: TZQuery
+  object QryProdutos: TZQuery
     Connection = dtmPrincipal.ConexaoDB
+    Active = True
     SQL.Strings = (
-      'Select  categoriaId,'
-      '        descricao'
-      '  from  categoria'
-      'Order By descricao')
+      'SELECT * FROM produtos'
+      'Order by Nome')
     Params = <>
     Left = 808
     Top = 56
-    object intgrfldQryCategoriascategoriaId: TIntegerField
-      FieldName = 'categoriaId'
+    object QryProdutosprodutoId: TIntegerField
+      FieldName = 'produtoId'
       ReadOnly = True
     end
-    object wdstrngfldQryCategoriasdescricao: TWideStringField
-      FieldName = 'descricao'
-      Size = 30
+    object QryProdutosnome: TWideStringField
+      FieldName = 'nome'
+      Size = 60
+    end
+    object QryProdutosvalor: TFloatField
+      FieldName = 'valor'
+    end
+    object QryProdutosquantidade: TFloatField
+      FieldName = 'quantidade'
     end
   end
-  object dtsCategorias: TDataSource
-    DataSet = QryCategorias
+  object dtsProdutos: TDataSource
+    DataSet = QryProdutos
     Left = 808
     Top = 136
   end
