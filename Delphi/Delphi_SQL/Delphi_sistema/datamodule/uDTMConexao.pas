@@ -9,12 +9,6 @@ uses
 type
   TdtmPrincipal = class(TDataModule)
     ConexaoDB: TZConnection;
-    QryScriptCategorias: TZQuery;
-    QryScriptClientes: TZQuery;
-    QryScriptProdutos: TZQuery;
-    QryScriptVendas: TZQuery;
-    QryScriptItensVenda: TZQuery;
-    QryScriptUsuarios: TZQuery;
   private
     { Private declarations }
   public

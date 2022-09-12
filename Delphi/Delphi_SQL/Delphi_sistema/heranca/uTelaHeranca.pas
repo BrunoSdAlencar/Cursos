@@ -193,7 +193,6 @@ begin
 
     else if (Components[i] is TDateEdit) then
       TDateEdit(Components[i]).Date:=0;
-
   end;
 end;
 

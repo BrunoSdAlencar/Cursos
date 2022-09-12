@@ -60,14 +60,16 @@ uses
 
 function TfrmCadCliente.Apagar: Boolean;
 begin
-  if oCliente.Selecionar(QryListagem.FieldByName('clienteId').AsInteger) then begin
+  if oCliente.Selecionar(QryListagem.FieldByName('clienteId').AsInteger) then
+  begin
      Result:=oCliente.Apagar;
   end;
 end;
 
 procedure TfrmCadCliente.btnAlterarClick(Sender: TObject);
 begin
-  if oCliente.Selecionar(QryListagem.FieldByName('clienteId').AsInteger) then begin
+  if oCliente.Selecionar(QryListagem.FieldByName('clienteId').AsInteger) then
+  begin
      edtClienteId.Text:=IntToStr(oCliente.codigo);
      edtNome.Text     :=oCliente.nome;
      edtCEP.Text      :=oCliente.cep;
@@ -79,12 +81,12 @@ begin
      edtDataNascimento.Date:=oCliente.dataNascimento;
 
   end
-  else begin
+  else
+  begin
     btnCancelar.Click;
     Abort;
   end;
   inherited;
-
 end;
 
 procedure TfrmCadCliente.btnNovoClick(Sender: TObject);

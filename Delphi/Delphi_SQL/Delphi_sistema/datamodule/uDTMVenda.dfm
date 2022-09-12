@@ -11,8 +11,8 @@ object dtmVendas: TdtmVendas
       '  nome'
       'FROM clientes')
     Params = <>
-    Left = 56
-    Top = 48
+    Left = 152
+    Top = 88
     object intgrfldQryClienteclienteId: TIntegerField
       DisplayLabel = 'C'#243'digo'
       FieldName = 'clienteId'
@@ -33,8 +33,8 @@ object dtmVendas: TdtmVendas
       'quantidade'
       'FROM produtos')
     Params = <>
-    Left = 144
-    Top = 48
+    Left = 240
+    Top = 88
     object QryProdutosprodutoId: TIntegerField
       DisplayLabel = 'C'#243'digo'
       FieldName = 'produtoId'
@@ -57,8 +57,8 @@ object dtmVendas: TdtmVendas
   object cdsItensVenda: TClientDataSet
     Aggregates = <>
     Params = <>
-    Left = 224
-    Top = 48
+    Left = 320
+    Top = 88
     object cdsItensVendaprodutoId: TIntegerField
       DisplayLabel = 'C'#243'dig'
       FieldName = 'produtoId'
@@ -82,17 +82,17 @@ object dtmVendas: TdtmVendas
   end
   object dtsCliente: TDataSource
     DataSet = QryCliente
-    Left = 56
-    Top = 104
+    Left = 152
+    Top = 144
   end
   object dtsProdutos: TDataSource
     DataSet = QryProdutos
-    Left = 144
-    Top = 104
+    Left = 240
+    Top = 144
   end
   object dtsItensVenda: TDataSource
     DataSet = cdsItensVenda
-    Left = 224
-    Top = 104
+    Left = 320
+    Top = 144
   end
 end

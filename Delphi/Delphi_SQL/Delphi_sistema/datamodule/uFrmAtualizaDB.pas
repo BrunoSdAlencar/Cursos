@@ -12,14 +12,8 @@ type
     pnl1: TPanel;
     pnl2: TPanel;
     lbl1: TLabel;
-    chkConexao: TCheckBox;
-    chkCategoria: TCheckBox;
-    chkProduto: TCheckBox;
-    chkCliente: TCheckBox;
-    chkVendas: TCheckBox;
-    chkItensVenda: TCheckBox;
     img1: TImage;
-    chkUsuarios: TCheckBox;
+    lbl11: TLabel;
   private
     { Private declarations }
   public

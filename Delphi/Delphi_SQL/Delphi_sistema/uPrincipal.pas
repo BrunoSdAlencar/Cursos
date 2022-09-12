@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao, Enter,
   Vcl.StdCtrls, Vcl.ExtCtrls, uFrmAtualizaDB, uAlterarSenha, cUsuarioLogado, ZDbcIntfs,
-  Vcl.ComCtrls;
+  Vcl.ComCtrls, cAtualizacaoBancoDeDados, cArquivoIni, zDataset;
 
 type
   TfrmPrincipal = class(TForm)
@@ -51,6 +51,7 @@ type
     { Private declarations }
     TeclaEnter: TMREnter;
     procedure AtualizacaoBancoDados(aForm: TfrmAtualizaDB);
+    procedure CriarBanco(dbname:string);
   public
     { Public declarations }
   end;
@@ -90,9 +91,14 @@ end;
 
 procedure TfrmPrincipal.CLIENTE1Click(Sender: TObject);
 begin
-  frmCadCliente:=TfrmCadCliente.Create(Self);
-  frmCadCliente.ShowModal;
-  frmCadCliente.Release;
+
+  try
+    frmCadCliente:=TfrmCadCliente.Create(Self);
+    frmCadCliente.ShowModal;  
+  finally
+    FreeAndNil(frmCadCliente);
+  end;
+//  frmCadCliente.Release;
 end;
 
 procedure TfrmPrincipal.CLIENTE3Click(Sender: TObject);
@@ -101,6 +107,42 @@ begin
   frmRelCadCliente.Relatorio.PreviewModal;
   frmRelCadCliente.Release;
 
+end;
+
+procedure TfrmPrincipal.CriarBanco(dbname:string);
+var Qry:TZQuery;
+begin
+  dtmPrincipal := TdtmPrincipal.Create(Self);
+  with dtmPrincipal.ConexaoDB do
+  begin
+
+    // Retirar connected, coloquei para conectar em outra DB
+    Connected:=False;
+    SQLHourGlass:=False;
+    if TArquivoIni.LerIni('SERVER', 'TipoDataBase')='MSSQL' then
+      Protocol:='mssql';  // Protocolo do bando de dados
+
+      LibraryLocation:=ExtractFilePath(Application.ExeName)+'ntwdblib.dll';  //Seta a DLL para conexao do SQL
+      HostName:= TArquivoIni.LerIni('SERVER','HostName'); //Instancia do SQLServer
+      Port    := StrToInt(TArquivoIni.LerIni('SERVER','Port'));  //Porta do SQL Server
+      User    := TArquivoIni.LerIni('SERVER','User');  //Usuario do Banco de Dados
+      Password:= TArquivoIni.LerIni('SERVER','Password');  //Senha do Usuário do banco
+
+      AutoCommit:=True;
+      TransactIsolationLevel:=tiReadCommitted;
+      Connected:=True;
+  end;
+
+  try
+    Qry:=TZQuery.Create(nil);
+    Qry.Connection:=dtmPrincipal.ConexaoDB;
+    Qry.SQL.Clear;
+    Qry.SQL.Add('CREATE DATABASE '+dbname);
+    Qry.ExecSQL;
+  finally
+    if Assigned(Qry) then
+       FreeAndNil(Qry);
+  end;
 end;
 
 procedure TfrmPrincipal.FICHADECLIENTE1Click(Sender: TObject);
@@ -123,6 +165,8 @@ end;
 
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
+var
+  loBanco:string;
 begin
   {dtmPrincipal := TdtmPrincipal.Create(Self);
   dtmPrincipal.ConexaoDB.SQLHourGlass:=True;
@@ -134,8 +178,24 @@ begin
   dtmPrincipal.ConexaoDB.Password:='rt6666';
   dtmPrincipal.ConexaoDB.Database:='vendas';
   dtmPrincipal.ConexaoDB.Connected:=True;}
-
  // conexao com DB
+  if not FileExists(TArquivoIni.ArquivoIni) then
+  begin
+      TArquivoIni.AtualizarIni('SERVER', 'TipoDataBase', 'MSSQL');
+      TArquivoIni.AtualizarIni('SERVER', 'HostName', '.\SERVERCURSO');
+      TArquivoIni.AtualizarIni('SERVER', 'Port', '1433');
+      TArquivoIni.AtualizarIni('SERVER', 'User', 'sa');
+      TArquivoIni.AtualizarIni('SERVER', 'Password', 'rt6666');
+      loBanco:= InputBox('NOME DO BANCO','Nome','******');
+      TArquivoIni.AtualizarIni('SERVER', 'Database', loBanco);
+
+      MessageDlg('Arquivo '+ TArquivoIni.ArquivoIni +
+                 'Criado, Configure o arquivo antes de inicializar a aplicação', MtInformation,[mbok],0);
+      CriarBanco(loBanco);
+      Application.Terminate;
+  end;
+
+
   frmAtualizaDB:=TfrmAtualizaDB.Create(Self);
   frmAtualizaDB.Show;
   frmAtualizaDB.Refresh;
@@ -143,17 +203,30 @@ begin
   dtmPrincipal := TdtmPrincipal.Create(Self);
   with dtmPrincipal.ConexaoDB do
   begin
+
+    // Retirar connected, coloquei para conectar em outra DB
+    Connected:=False;
     SQLHourGlass:=False;
-    Protocol := 'mssql';
-    LibraryLocation:='D:\Cursos\Delphi\Delphi_sistema\ntwdblib.dll';
+    if TArquivoIni.LerIni('SERVER', 'TipoDataBase')='MSSQL' then
+      Protocol:='mssql';  // Protocolo do bando de dados
+
+      LibraryLocation:=ExtractFilePath(Application.ExeName)+'ntwdblib.dll';  //Seta a DLL para conexao do SQL
+      HostName:= TArquivoIni.LerIni('SERVER','HostName'); //Instancia do SQLServer
+      Port    := StrToInt(TArquivoIni.LerIni('SERVER','Port'));  //Porta do SQL Server
+      User    := TArquivoIni.LerIni('SERVER','User');  //Usuario do Banco de Dados
+      Password:= TArquivoIni.LerIni('SERVER','Password');  //Senha do Usuário do banco
+      Database:= TArquivoIni.LerIni('SERVER','DataBase');;  //Nome do Banco de Dados
+
+    {LibraryLocation:='D:\Cursos\Delphi\Delphi_sistema\ntwdblib.dll'; ele tava dando certo por que tava ali mesmo
     HostName:='.\SERVERCURSO';
     Port:=1433;
     user:='sa';
     Password:='rt6666';
-    Database:='vendas';
-    AutoCommit:=True;
-    TransactIsolationLevel:=tiReadCommitted;
-    Connected:=True;
+    //Database:='dbVendaTeste';
+    Database:='vendas';}
+      AutoCommit:=True;
+      TransactIsolationLevel:=tiReadCommitted;
+      Connected:=True;
   end;
 
   AtualizacaoBancoDados(frmAtualizaDB);
@@ -166,7 +239,6 @@ begin
 
 end;
 
-
 procedure TfrmPrincipal.FormShow(Sender: TObject);
 begin
   try
@@ -177,8 +249,6 @@ begin
     frmLogin.Release;
     stpPrincipal.Panels[0].Text:='USUÁRIO: '+oUsuarioLogado.nome;
   end;
-
-
 end;
 
 procedure TfrmPrincipal.ALTERARSENHA1Click(Sender: TObject);
@@ -186,16 +256,26 @@ begin
   frmAlterarSenha:=TfrmAlterarSenha.Create(self);
   frmAlterarSenha.ShowModal;
   frmAlterarSenha.Release;
-
 end;
 
 procedure TfrmPrincipal.AtualizacaoBancoDados(aForm:TfrmAtualizaDB);
+var
+  oAtualizarMSSQL: TAtualizaBancoDadosMSSQL;
 begin
-  aForm.chkConexao.Checked:=true;
   aForm.Refresh;
-  Sleep(100);
 
-  DtmPrincipal.QryScriptCategorias.ExecSQL;
+  try
+     oAtualizarMSSQL:=TAtualizaBancoDadosMSSQL.Create(dtmPrincipal.ConexaoDB);
+     oAtualizarMSSQL.AtualizarBancoDeDadosMSSQL;
+  finally
+     if Assigned(oAtualizarMSSQL) then
+        FreeAndNil(oAtualizarMSSQL);
+  end;
+
+
+   // Deixar em desuso para atualizar o método de banco de dados
+   // Deixar salvo para estudo
+  {DtmPrincipal.QryScriptCategorias.ExecSQL;
   aForm.chkCategoria.Checked:=true;
   aForm.Refresh;
   Sleep(100);
@@ -223,7 +303,7 @@ begin
   DtmPrincipal.QryScriptUsuarios.ExecSQL;
   aForm.chkUsuarios.Checked:=true;
   aForm.Refresh;
-  Sleep(100);
+  Sleep(100);}
 
 
 end;

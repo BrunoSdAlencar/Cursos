@@ -29,7 +29,11 @@ uses
   uRelCadProdutoComGrupoCategoria in 'relatorio\uRelCadProdutoComGrupoCategoria.pas' {frmRelCadProdutoComGrupoCategoria},
   uRelCategoria in 'relatorio\uRelCategoria.pas' {frmRelCategoria},
   uSelecionarData in 'relatorio\uSelecionarData.pas' {frmSelecionarData},
-  uRelCadProduto in 'relatorio\uRelCadProduto.pas' {frmRelCadProduto};
+  uRelCadProduto in 'relatorio\uRelCadProduto.pas' {frmRelCadProduto},
+  cAtualizacaoBancoDeDados in 'classes\cAtualizacaoBancoDeDados.pas',
+  cAtualizacaoTabelaMSSQL in 'classes\cAtualizacaoTabelaMSSQL.pas',
+  cAtualizacaoCampoMSSQL in 'classes\cAtualizacaoCampoMSSQL.pas',
+  cArquivoIni in 'classes\cArquivoIni.pas';
 
 {$R *.res}
 

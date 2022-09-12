@@ -40,7 +40,7 @@ object frmAtualizaDB: TfrmAtualizaDB
       ParentBackground = False
       TabOrder = 0
       object lbl1: TLabel
-        Left = 286
+        Left = 278
         Top = 16
         Width = 235
         Height = 23
@@ -529,61 +529,18 @@ object frmAtualizaDB: TfrmAtualizaDB
           C1650BEF99B0D0B1E79FA34C30B22F405FD3A94FA069DA97E8BA421AC7FF03F2
           92660E456E700D0000000049454E44AE426082}
       end
-      object chkConexao: TCheckBox
-        Left = 288
-        Top = 64
-        Width = 169
-        Height = 17
-        Caption = 'Conex'#227'o com banco de dados'
-        TabOrder = 0
-      end
-      object chkCategoria: TCheckBox
-        Left = 288
-        Top = 87
-        Width = 169
-        Height = 17
-        Caption = 'Categoria'
-        TabOrder = 1
-      end
-      object chkProduto: TCheckBox
-        Left = 288
-        Top = 110
-        Width = 169
-        Height = 17
-        Caption = 'Produto'
-        TabOrder = 2
-      end
-      object chkCliente: TCheckBox
-        Left = 288
-        Top = 133
-        Width = 169
-        Height = 17
-        Caption = 'Cliente'
-        TabOrder = 3
-      end
-      object chkVendas: TCheckBox
-        Left = 288
-        Top = 156
-        Width = 169
-        Height = 17
-        Caption = 'Vendas'
-        TabOrder = 4
-      end
-      object chkItensVenda: TCheckBox
-        Left = 288
-        Top = 179
-        Width = 169
-        Height = 17
-        Caption = 'Itens Venda'
-        TabOrder = 5
-      end
-      object chkUsuarios: TCheckBox
-        Left = 288
-        Top = 202
-        Width = 169
-        Height = 17
-        Caption = 'Usu'#225'rios'
-        TabOrder = 6
+      object lbl11: TLabel
+        Left = 278
+        Top = 88
+        Width = 89
+        Height = 23
+        Caption = 'Aguarde...'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -19
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
       end
     end
   end
