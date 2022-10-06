@@ -152,93 +152,19 @@ inherited frmCadCliente: TfrmCadCliente
         MaxLength = 100
         TabOrder = 6
       end
-      object edtdataNascimento: TDateEdit
-        Left = 16
-        Top = 336
-        Width = 121
-        Height = 21
-        ClickKey = 114
-        DialogTitle = 'Selecione a data'
-        NumGlyphs = 2
-        TabOrder = 7
-      end
       object edtNome: TEdit
         Tag = 2
         Left = 16
         Top = 94
         Width = 497
         Height = 21
-        TabOrder = 8
+        TabOrder = 7
       end
     end
   end
   inherited pnlRodape: TPanel
     inherited btnNavigator: TDBNavigator
       Hints.Strings = ()
-    end
-  end
-  inherited QryListagem: TZQuery
-    Active = True
-    SQL.Strings = (
-      'select clienteId,'
-      #9'nome,'
-      #9'endereco,'
-      #9'cidade,'
-      #9'bairro,'
-      #9'estado,'
-      #9'cep,'
-      #9'telefone,'
-      #9'email,'
-      #9'dataNascimento'
-      'from clientes')
-    object QryListagemclienteId: TIntegerField
-      DisplayLabel = 'C'#243'digo'
-      FieldName = 'clienteId'
-      ReadOnly = True
-    end
-    object QryListagemnome: TWideStringField
-      DisplayLabel = 'Nome'
-      FieldName = 'nome'
-      Size = 60
-    end
-    object QryListagemendereco: TWideStringField
-      DisplayLabel = 'Endereco'
-      FieldName = 'endereco'
-      Size = 60
-    end
-    object QryListagemcidade: TWideStringField
-      DisplayLabel = 'Cidade'
-      FieldName = 'cidade'
-      Size = 50
-    end
-    object QryListagembairro: TWideStringField
-      DisplayLabel = 'Bairro'
-      FieldName = 'bairro'
-      Size = 40
-    end
-    object QryListagemestado: TWideStringField
-      DisplayLabel = 'Estado'
-      FieldName = 'estado'
-      Size = 2
-    end
-    object QryListagemcep: TWideStringField
-      DisplayLabel = 'CEP'
-      FieldName = 'cep'
-      Size = 10
-    end
-    object QryListagemtelefone: TWideStringField
-      DisplayLabel = 'Telefone'
-      FieldName = 'telefone'
-      Size = 14
-    end
-    object QryListagememail: TWideStringField
-      DisplayLabel = 'E-mail'
-      FieldName = 'email'
-      Size = 100
-    end
-    object QryListagemdataNascimento: TDateTimeField
-      DisplayLabel = 'Data Nascimento'
-      FieldName = 'dataNascimento'
     end
   end
 end

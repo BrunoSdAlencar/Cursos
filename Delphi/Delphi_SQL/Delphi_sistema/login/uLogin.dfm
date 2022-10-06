@@ -129,7 +129,7 @@ object frmLogin: TfrmLogin
     Font.Style = []
     ParentFont = False
     TabOrder = 2
-    Text = 'BrunoSdA'
+    Text = 'ADMIN'
   end
   object edtSenha: TEdit
     Left = 144

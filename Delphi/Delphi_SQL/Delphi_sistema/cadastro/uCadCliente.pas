@@ -7,7 +7,8 @@ uses
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uTelaHeranca, Data.DB,
   ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.DBCtrls, Vcl.Grids,
   Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls, Vcl.ComCtrls,
-   RxToolEdit, uEnum, cCadCliente;
+   RxToolEdit, uEnum, cCadCliente, StdCtrls, ExtCtrls, DB, DBCtrls, Grids,
+  DBGrids, Buttons, Mask, Controls, ComCtrls, Classes;
 type
   TfrmCadCliente = class(TfrmTelaHeranca)
     QryListagemclienteId: TIntegerField;
